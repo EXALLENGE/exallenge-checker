@@ -18,6 +18,13 @@ export function activate(context: vscode.ExtensionContext) {
     "exallenge-checker.helloWorld",
     () => {
       console.log(vscode.workspace.rootPath);
+      console.log(vscode.window.activeTextEditor.document.uri.fsPath);
+      vscode.workspace
+        .openTextDocument(vscode.window.activeTextEditor.document.uri.fsPath)
+        .then((document) => {
+          let text = document.getText();
+          console.log(text);
+        });
       // The code you place here will be executed every time your command is executed
       var spawn = require("child_process").spawn;
 
