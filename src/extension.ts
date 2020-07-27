@@ -2,6 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
+import checker from "./utils/checkers";
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -24,6 +26,11 @@ export function activate(context: vscode.ExtensionContext) {
         .then((document) => {
           let text = document.getText();
           console.log(text);
+          checker(
+            vscode.window.activeTextEditor.document.uri.fsPath,
+            vscode.window.activeTextEditor.document.uri.fsPath,
+            text
+          );
         });
       // The code you place here will be executed every time your command is executed
       var spawn = require("child_process").spawn;
