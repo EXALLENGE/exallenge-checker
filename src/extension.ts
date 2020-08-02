@@ -19,17 +19,15 @@ export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
     "exallenge-checker.helloWorld",
     () => {
-      console.log(vscode.workspace.rootPath);
-      console.log(vscode.window.activeTextEditor.document.uri.fsPath);
       vscode.workspace
         .openTextDocument(vscode.window.activeTextEditor.document.uri.fsPath)
         .then((document) => {
           let text = document.getText();
-          console.log(text);
           checker(
             vscode.window.activeTextEditor.document.uri.fsPath,
             vscode.window.activeTextEditor.document.uri.fsPath,
-            text
+            text,
+            context.globalState
           );
         });
       // The code you place here will be executed every time your command is executed
